@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <g fill="#1a1a1a">
+    <!-- body -->
+    <ellipse cx="300" cy="300" rx="60" ry="80"/>
+    <!-- head -->
+    <circle cx="300" cy="200" r="40"/>
+    <!-- beak -->
+    <path d="M340 200 L390 195 L340 215 Z" fill="#f0c000"/>
+    <!-- wings drooping -->
+    <path d="M240 280 Q120 320 80 460 Q150 440 240 380 Z"/>
+    <path d="M360 280 Q480 320 520 460 Q450 440 360 380 Z"/>
+    <!-- tail feathers -->
+    <path d="M270 360 L330 360 L300 480 Z"/>
+  </g>
+</svg>

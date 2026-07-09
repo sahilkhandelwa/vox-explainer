@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <g fill="#000">
+    <!-- robe -->
+    <path d="M60 720 Q300 560 540 720 L540 800 L60 800 Z"/>
+    <!-- neck -->
+    <path d="M250 530 Q300 580 350 530 L350 600 L250 600 Z" fill="#fff"/>
+    <!-- beard (full, rounded) -->
+    <path d="M195 360 Q180 510 300 560 Q420 510 405 360 Q400 320 300 312 Q200 320 195 360 Z"/>
+    <!-- face (just upper, beard covers lower) -->
+    <path d="M205 240 Q200 350 300 345 Q400 350 395 240 Q380 180 300 175 Q220 180 205 240 Z" fill="#fff"/>
+    <!-- turban (large rounded black band around crown) -->
+    <path d="M150 215 Q150 110 300 95 Q450 110 450 215 Q450 240 300 245 Q150 240 150 215 Z"/>
+    <!-- eyes (smaller, intense) -->
+    <ellipse cx="265" cy="280" rx="11" ry="6"/>
+    <ellipse cx="345" cy="280" rx="11" ry="6"/>
+    <!-- eyebrows -->
+    <rect x="246" y="262" width="36" height="6" rx="2"/>
+    <rect x="328" y="262" width="36" height="6" rx="2"/>
+    <!-- nose -->
+    <path d="M305 300 Q293 345 308 358 L320 358 Z"/>
+  </g>
+</svg>

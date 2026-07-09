@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <g>
+    <circle cx="960" cy="540" r="320" fill="#4a7ba0" stroke="#1a1a1a" stroke-width="6"/>
+    <!-- continents (abstract blobs) -->
+    <path d="M700 420 Q760 380 820 410 Q840 470 780 490 Q720 500 700 460 Z" fill="#1a1a1a"/>
+    <path d="M980 520 Q1080 470 1150 520 Q1170 580 1090 600 Q1020 590 980 540 Z" fill="#1a1a1a"/>
+    <path d="M880 700 Q980 680 1080 720 Q1080 770 1000 780 Q900 760 880 720 Z" fill="#1a1a1a"/>
+    <!-- lat/long lines -->
+    <ellipse cx="960" cy="540" rx="320" ry="100" fill="none" stroke="#1a1a1a" stroke-width="3" opacity="0.4"/>
+    <ellipse cx="960" cy="540" rx="320" ry="60" fill="none" stroke="#1a1a1a" stroke-width="3" opacity="0.4"/>
+    <ellipse cx="960" cy="540" rx="100" ry="320" fill="none" stroke="#1a1a1a" stroke-width="3" opacity="0.4"/>
+    <!-- dollar sign flying off -->
+    <text x="1500" y="320" text-anchor="middle" font-family="Georgia,serif" font-size="240" font-weight="700" fill="#d22b2b">$</text>
+    <path d="M1280 380 L1480 320" stroke="#d22b2b" stroke-width="6" stroke-dasharray="20,15"/>
+  </g>
+</svg>

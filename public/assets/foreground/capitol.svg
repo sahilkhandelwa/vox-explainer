@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <g fill="#1a1a1a">
+    <rect x="200" y="640" width="1520" height="220"/>
+    <rect x="500" y="540" width="920" height="100"/>
+    <ellipse cx="960" cy="450" rx="220" ry="160"/>
+    <rect x="500" y="540" width="920" height="40"/>
+    <!-- column hints -->
+    <rect x="550" y="580" width="12" height="60"/>
+    <rect x="594" y="580" width="12" height="60"/>
+    <rect x="638" y="580" width="12" height="60"/>
+    <rect x="682" y="580" width="12" height="60"/>
+    <rect x="726" y="580" width="12" height="60"/>
+    <rect x="770" y="580" width="12" height="60"/>
+    <rect x="814" y="580" width="12" height="60"/>
+    <rect x="858" y="580" width="12" height="60"/>
+    <rect x="902" y="580" width="12" height="60"/>
+    <rect x="946" y="580" width="12" height="60"/>
+    <rect x="990" y="580" width="12" height="60"/>
+    <rect x="1034" y="580" width="12" height="60"/>
+    <rect x="1078" y="580" width="12" height="60"/>
+    <rect x="1122" y="580" width="12" height="60"/>
+    <rect x="1166" y="580" width="12" height="60"/>
+    <rect x="1210" y="580" width="12" height="60"/>
+    <rect x="1254" y="580" width="12" height="60"/>
+    <rect x="1298" y="580" width="12" height="60"/>
+    <rect x="1342" y="580" width="12" height="60"/>
+    <rect x="1386" y="580" width="12" height="60"/>
+    <line x1="960" y1="290" x2="960" y2="200" stroke="#1a1a1a" stroke-width="6"/>
+    <circle cx="960" cy="198" r="22"/>
+  </g>
+</svg>

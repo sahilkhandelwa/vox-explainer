@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <g fill="none" stroke="#1a1a1a" stroke-width="6">
+    <!-- water -->
+    <path d="M200 500 Q700 380 1200 460 Q1600 520 1750 400 L1750 1080 L200 1080 Z" fill="#4a7ba0" stroke="none"/>
+    <!-- tongue (gulf) -->
+    <path d="M500 1080 Q700 720 950 520 Q1100 460 1150 460 Q980 540 850 720 Q700 900 540 1080 Z" fill="#efe6d2" stroke="#1a1a1a" stroke-width="3"/>
+    <!-- strait pinch -->
+    <line x1="900" y1="600" x2="1180" y2="540" stroke="#d22b2b" stroke-width="9"/>
+    <!-- label dot -->
+    <circle cx="1040" cy="570" r="14" fill="#d22b2b" stroke="none"/>
+    <!-- IR head marker -->
+    <circle cx="700" cy="760" r="28" fill="#000" stroke="none"/>
+    <!-- US fleet marker -->
+    <path d="M1500 700 L1540 740 L1500 780 L1460 740 Z" fill="#d22b2b" stroke="none"/>
+  </g>
+</svg>

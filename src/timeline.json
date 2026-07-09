@@ -1,0 +1,77 @@
+{
+  "fps": 30,
+  "scenes": [
+    {
+      "id": "peace-deal",
+      "durationSec": 5.090958,
+      "startSec": 0,
+      "endSec": 5.090958
+    },
+    {
+      "id": "empire-downfall",
+      "durationSec": 5.850958,
+      "startSec": 5.090958,
+      "endSec": 10.941915999999999
+    },
+    {
+      "id": "strait-hostage",
+      "durationSec": 6.130958,
+      "startSec": 10.941915999999999,
+      "endSec": 17.072874
+    },
+    {
+      "id": "oil-prices",
+      "durationSec": 6.010958,
+      "startSec": 17.072874,
+      "endSec": 23.083831999999997
+    },
+    {
+      "id": "inflation-high",
+      "durationSec": 5.450958,
+      "startSec": 23.083831999999997,
+      "endSec": 28.534789999999997
+    },
+    {
+      "id": "debt-39-trillion",
+      "durationSec": 5.8,
+      "startSec": 28.534789999999997,
+      "endSec": 34.33479
+    },
+    {
+      "id": "debt-bigger-than-economy",
+      "durationSec": 4.050958,
+      "startSec": 34.33479,
+      "endSec": 38.385748
+    },
+    {
+      "id": "interest-military",
+      "durationSec": 5.4,
+      "startSec": 38.385748,
+      "endSec": 43.785748
+    },
+    {
+      "id": "world-leaving-dollar",
+      "durationSec": 5,
+      "startSec": 43.785748,
+      "endSec": 48.785748
+    },
+    {
+      "id": "empires-end-with-bill",
+      "durationSec": 3.2,
+      "startSec": 48.785748,
+      "endSec": 51.985748
+    },
+    {
+      "id": "empires-end-bill",
+      "durationSec": 4.6,
+      "startSec": 51.985748,
+      "endSec": 56.585748
+    },
+    {
+      "id": "outro",
+      "durationSec": 4.2,
+      "startSec": 56.585748,
+      "endSec": 60.785748000000005
+    }
+  ]
+}

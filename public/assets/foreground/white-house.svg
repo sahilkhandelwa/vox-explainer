@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <g fill="#1a1a1a" stroke="#1a1a1a" stroke-width="3">
+    <!-- wings -->
+    <rect x="450" y="640" width="1020" height="190"/>
+    <!-- main block -->
+    <rect x="730" y="520" width="460" height="310"/>
+    <!-- roof -->
+    <polygon points="730,520 960,400 1190,520"/>
+    <!-- pediment -->
+    <polygon points="780,520 960,440 1140,520"/>
+    <!-- central portico columns -->
+    <rect x="720" y="520" width="22" height="220"/>
+    <rect x="770" y="520" width="22" height="220"/>
+    <rect x="820" y="520" width="22" height="220"/>
+    <rect x="870" y="520" width="22" height="220"/>
+    <rect x="920" y="520" width="22" height="220"/>
+    <rect x="972" y="520" width="22" height="220"/>
+    <rect x="1020" y="520" width="22" height="220"/>
+    <rect x="1070" y="520" width="22" height="220"/>
+    <rect x="1120" y="520" width="22" height="220"/>
+    <!-- roof of main block (top circle pediment) -->
+    <ellipse cx="960" cy="440" rx="34" ry="20"/>
+    <!-- windows on wings -->
+    <rect x="480" y="685" width="40" height="60" fill="#efe6d2"/>
+    <rect x="560" y="685" width="40" height="60" fill="#efe6d2"/>
+    <rect x="640" y="685" width="40" height="60" fill="#efe6d2"/>
+    <rect x="720" y="685" width="40" height="60" fill="#efe6d2"/>
+    <rect x="800" y="685" width="40" height="60" fill="#efe6d2"/>
+    <rect x="880" y="685" width="40" height="60" fill="#efe6d2"/>
+    <rect x="960" y="685" width="40" height="60" fill="#efe6d2"/>
+    <rect x="1040" y="685" width="40" height="60" fill="#efe6d2"/>
+    <rect x="1120" y="685" width="40" height="60" fill="#efe6d2"/>
+    <rect x="1200" y="685" width="40" height="60" fill="#efe6d2"/>
+    <rect x="1280" y="685" width="40" height="60" fill="#efe6d2"/>
+    <rect x="1360" y="685" width="40" height="60" fill="#efe6d2"/>
+    <!-- flag -->
+    <line x1="960" y1="400" x2="960" y2="320" stroke-width="3"/>
+    <path d="M960 320 Q1010 330 1000 350 Q960 360 960 350 Z"/>
+  </g>
+</svg>

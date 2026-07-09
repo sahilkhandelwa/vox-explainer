@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 320" width="1920" height="320">
+  <g fill="#1a1a1a">
+    <path d="M40 250 L1800 250 L1880 200 L1880 175 L40 175 Z"/>
+    <rect x="110" y="120" width="380" height="55"/>
+    <rect x="280" y="60" width="100" height="60"/>
+    <rect x="540" y="150" width="1200" height="20"/>
+    <rect x="1750" y="120" width="80" height="55"/>
+    <!-- smokestack -->
+    <rect x="300" y="20" width="20" height="40"/>
+    <path d="M313 10 Q330 0 320 35" fill="rgba(40,40,40,0.45)"/>
+  </g>
+</svg>

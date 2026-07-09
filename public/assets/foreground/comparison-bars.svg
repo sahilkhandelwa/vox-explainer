@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <g>
+    <rect x="280" y="240" width="600" height="540" fill="#1a1a1a"/>
+    <text x="580" y="850" text-anchor="middle" font-family="Georgia,serif" font-size="60" font-weight="700" fill="#1a1a1a">MILITARY</text>
+    <rect x="1040" y="180" width="600" height="600" fill="#d22b2b"/>
+    <text x="1340" y="850" text-anchor="middle" font-family="Georgia,serif" font-size="60" font-weight="700" fill="#d22b2b">INTEREST</text>
+    <text x="1340" y="540" text-anchor="middle" font-family="Georgia,serif" font-size="160" font-weight="700" fill="#fff">TALLER</text>
+    <text x="580" y="540" text-anchor="middle" font-family="Georgia,serif" font-size="120" font-weight="700" fill="#fff">~$880B</text>
+  </g>
+</svg>
