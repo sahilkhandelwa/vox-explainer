@@ -25,7 +25,7 @@ export const EditorialScene1: React.FC = () => {
   return (
     <>
       <div style={{ position: "absolute", left: 660, top: dropY, width: 600, height: 600, transform: `rotate(${rot}deg)`, transformOrigin: "300px 300px" }}>
-        <Img src={staticFile("/assets-editorial/foreground/eagle-photo.png")} style={{ width: "100%", height: "100%", objectFit: "contain", filter: "grayscale(1) contrast(220%) brightness(85%)" }} />
+        <Img src={staticFile("/assets-editorial/foreground/eagle-photo.png")} style={{ width: "100%", height: "100%", objectFit: "contain", filter: "grayscale(1) contrast(250%) brightness(85%)" }} />
       </div>
       <EditorialCutout src="/assets-editorial/midground/trump-cutout.png" scale={0.45} x={-160} y={60} delay={2} offset={12} />
     </>

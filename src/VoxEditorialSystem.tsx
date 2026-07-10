@@ -1,5 +1,5 @@
 // ── Vox editorial visual system ─────────────────────────────────
-// Photographic cutouts with grit: grayscale(1) contrast(200%) brightness(90%)
+// Photographic cutouts with grit: grayscale(1) contrast(250%) brightness(85%)
 // Red offset via SVG feColorMatrix (silhouette-matched, not a box)
 // Paper + grain overlay for tactile physicality.
 import React from "react";
@@ -62,7 +62,7 @@ export const EditorialCutout: React.FC<{
         src={url}
         style={{
           position: "absolute", left: 0, top: 0, width: "100%", height: "100%", objectFit: "contain",
-          filter: "grayscale(1) contrast(220%) brightness(85%)",
+          filter: "grayscale(1) contrast(250%) brightness(85%)",
         }}
       />
     </div>
@@ -85,7 +85,7 @@ export const EditorialFocal: React.FC<{
   const opacity = interpolate(frame, [delay, delay + 8], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
     <div style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080, pointerEvents: "none", transform: `translate3d(${x}px, ${y + dy}px, 0) scale(${scale})`, opacity }}>
-      <Img src={url} style={{ width: "100%", height: "100%", objectFit: "contain", filter: "grayscale(1) contrast(200%) brightness(90%)" }} />
+      <Img src={url} style={{ width: "100%", height: "100%", objectFit: "contain", filter: "grayscale(1) contrast(250%) brightness(85%)" }} />
     </div>
   );
 };
