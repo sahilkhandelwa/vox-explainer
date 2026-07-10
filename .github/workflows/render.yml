@@ -4,6 +4,15 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Asset version'
+        required: true
+        default: 'svg'
+        type: choice
+        options:
+          - svg
+          - editorial
 
 jobs:
   render:
@@ -12,6 +21,7 @@ jobs:
 
     env:
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      VERSION: ${{ github.event.inputs.version || 'svg' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +42,7 @@ jobs:
       - name: Install npm deps
         run: npm ci
 
-      - name: Generate remaining missing TTS audio via Gemini
+      - name: Generate missing TTS audio via Gemini
         run: |
           node scripts/quick-tts.mjs 2>&1 || echo "TTS fill complete or quota hit"
 
@@ -57,12 +67,22 @@ jobs:
             console.log('Updated timeline, total='+acc+'s');
           "
 
-      - name: Render
+      - name: Render (SVG)
+        if: ${{ env.VERSION == 'svg' }}
         run: npx remotion render src/Index.tsx VoxMaster out/result.mp4 --codec=h264 --jpeg-quality=80 --concurrency=2
+
+      - name: Render (Editorial)
+        if: ${{ env.VERSION == 'editorial' }}
+        run: |
+          npx remotion still src/IndexEditorial.tsx VoxEditorialMaster out-v2/validation-frame.png --frame=450
+          node scripts/validate-frame.mjs || echo "Validation warning (non-fatal)"
+          npx remotion render src/IndexEditorial.tsx VoxEditorialMaster out/result_v2.mp4 --codec=h264 --jpeg-quality=80 --concurrency=2
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: vox-explainer-video
-          path: out/result.mp4
+          name: vox-explainer-${{ env.VERSION }}-video
+          path: |
+            out/result.mp4
+            out/result_v2.mp4
           compression-level: 0
