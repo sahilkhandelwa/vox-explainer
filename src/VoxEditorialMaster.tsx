@@ -1,6 +1,6 @@
 import React from "react";
 import { useVideoConfig, Audio, Sequence, staticFile } from "remotion";
-import { EditorialBackground } from "./VoxEditorialSystem";
+import { EditorialBg } from "./VoxEditorialSystem";
 import { EDITORIAL_SCENES } from "./scenes-editorial";
 import timeline from "./timeline.json";
 import voManifest from "./vo-manifest.json";
@@ -14,7 +14,7 @@ export const VoxEditorialMaster: React.FC = () => {
 
   return (
     <div style={{ position: "absolute", inset: 0, width: 1920, height: 1080, overflow: "hidden" }}>
-      <EditorialBackground />
+      <EditorialBg />
       {tl.scenes.map((s) => {
         const Comp = EDITORIAL_SCENES[s.id];
         const from = Math.round(s.startSec * confFps);
