@@ -1,12 +1,11 @@
 // ── Vox editorial visual system v3 ───────────────────────────────
-// Real photo cutouts with original colors (no B&W thresholding).
+// Real photo cutouts with original colors preserved.
 // Red offset via SVG feColorMatrix (silhouette-matched, not a box).
-// Original Vox paper background + halftone overlay.
+// Original Vox paper background.
 import React from "react";
 import { Img, staticFile, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 
 const BG = staticFile("/assets/background/paper-warm.svg");
-const HT = staticFile("/assets/midground/halftone-mask.svg");
 
 const RED_MATRIX = `
   <filter id="toRedV3" x="-20%" y="-20%" width="140%" height="140%">
@@ -57,12 +56,6 @@ export const EditorialCutout: React.FC<{
 
       {/* Main photo — original colors preserved */}
       <Img src={url} style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%", objectFit: "contain" }} />
-
-      {/* Halftone overlay masked to silhouette */}
-      <div style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080, mixBlendMode: "multiply", opacity: 0.7 }}>
-        <Img src={HT} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-        <Img src={url} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", mixBlendMode: "destination-in" }} />
-      </div>
     </div>
   );
 };

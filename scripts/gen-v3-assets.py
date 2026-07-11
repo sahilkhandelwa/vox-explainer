@@ -17,10 +17,9 @@ def dl(url, path):
     subprocess.run(["curl", "-sL", "-A", UA, "--max-time", "60", "-o", path, url], check=False)
     return os.path.exists(path) and os.path.getsize(path) > 5000
 
-def remove_bg(src, dst, edge_width=30, color_tol=40, smooth_edges=True):
-    """Remove background from a photo while preserving original subject colors.
-    
-    Samples background color from image edges, then removes pixels matching it.
+def remove_bg(src, dst, patch_size=40, color_tol=50, smooth_edges=True):
+    """Remove background while preserving original subject colors.
+    Samples only from corner patches to avoid subject contamination.
     """
     im = Image.open(src).convert("RGBA")
     if max(im.size) > 1400:
@@ -28,31 +27,26 @@ def remove_bg(src, dst, edge_width=30, color_tol=40, smooth_edges=True):
     pixels = im.load()
     w, h = im.size
 
-    # Sample background colors from all four edges
+    # Sample only from corner patches
     bg_samples = []
-    for x in range(w):
-        for y in range(edge_width):
-            bg_samples.append(pixels[x, y][:3])
-            bg_samples.append(pixels[x, h-1-y][:3])
-    for y in range(h):
-        for x in range(edge_width):
-            bg_samples.append(pixels[x, y][:3])
-            bg_samples.append(pixels[w-1-x, y][:3])
+    corners = [(0, 0), (w-patch_size, 0), (0, h-patch_size), (w-patch_size, h-patch_size)]
+    for cx, cy in corners:
+        for x in range(cx, min(cx+patch_size, w)):
+            for y in range(cy, min(cy+patch_size, h)):
+                bg_samples.append(pixels[x, y][:3])
 
     # Compute average background color
     r_avg = sum(s[0] for s in bg_samples) // len(bg_samples)
     g_avg = sum(s[1] for s in bg_samples) // len(bg_samples)
     b_avg = sum(s[2] for s in bg_samples) // len(bg_samples)
 
-    # Compute max color distance among samples to set adaptive threshold
-    max_dist = 0
-    for s in bg_samples:
-        d = math.sqrt((s[0]-r_avg)**2 + (s[1]-g_avg)**2 + (s[2]-b_avg)**2)
-        max_dist = max(max_dist, d)
+    # Compute adaptive threshold
+    max_dist = max(math.sqrt((s[0]-r_avg)**2 + (s[1]-g_avg)**2 + (s[2]-b_avg)**2) for s in bg_samples)
+    threshold = max(max_dist * 2.0, color_tol)
 
-    threshold = max(max_dist * 2.5, color_tol)
+    print(f"    bg=({r_avg},{g_avg},{b_avg}) threshold={threshold:.0f}")
 
-    # Create alpha mask: pixels far from bg color are kept
+    # Create alpha mask
     alpha = Image.new("L", (w, h), 0)
     alpha_px = alpha.load()
     for y in range(h):
@@ -66,14 +60,17 @@ def remove_bg(src, dst, edge_width=30, color_tol=40, smooth_edges=True):
 
     # Clean up mask
     alpha = alpha.filter(ImageFilter.MedianFilter(5))
-    alpha = alpha.filter(ImageFilter.MaxFilter(3))
+    alpha = alpha.filter(ImageFilter.MaxFilter(5))
     if smooth_edges:
-        alpha = alpha.filter(ImageFilter.SMOOTH)
+        alpha = alpha.filter(ImageFilter.SMOOTH_MORE)
 
-    # Composite: keep original RGBA but use new alpha
-    result = Image.merge("RGBA", (im.split()[0], im.split()[1], im.split()[2], alpha))
+    # Composite: keep original RGB, use new alpha
+    r_ch, g_ch, b_ch, _ = im.split()
+    result = Image.merge("RGBA", (r_ch, g_ch, b_ch, alpha))
     result.save(dst, "PNG")
-    print(f"    -> {os.path.getsize(dst)//1024}KB")
+    opaque = sum(1 for y in range(0, h, 10) for x in range(0, w, 10) if alpha.getpixel((x, y)) > 128)
+    total = (w//10) * (h//10)
+    print(f"    -> {os.path.getsize(dst)//1024}KB ({opaque*100//total}% opaque)")
 
 # ── Asset manifests ─────────────────────────────────────────────
 # (name, url, output_dir, filename, bg_removal_mode)
