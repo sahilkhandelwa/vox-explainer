@@ -93,7 +93,7 @@ export const SceneIntro: React.FC = () => (
   <CameraPush amount={0.05}>
     <AbsoluteFill style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
       <Slam from="top" delay={0} stiffness={300}>
-        <TvImg(340) />
+{TvImg(340)}
       </Slam>
       <Slam from="left" delay={8} stiffness={260}>
         <div style={{ fontSize: 90, fontFamily: "Georgia,serif", fontWeight: 700, color: "#1a1a1a", letterSpacing: 12 }}>THE</div>
@@ -183,13 +183,13 @@ export const SceneCordCut: React.FC = () => {
       <AbsoluteFill style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
         <div style={{ display: "flex", gap: 50, alignItems: "center", marginBottom: 30 }}>
           <Slam from="left" delay={0} stiffness={350}>
-            <TvImg(280) />
+{TvImg(280)}
           </Slam>
           <Slam from="top" delay={6} stiffness={500}>
             <div style={{ fontSize: 100, fontFamily: "Georgia,serif", color: "#E50914", fontWeight: 900 }}>✕</div>
           </Slam>
           <Slam from="right" delay={0} stiffness={350}>
-            <SofaImg(230) />
+{SofaImg(230)}
           </Slam>
         </div>
         <Slam from="bottom" delay={12} stiffness={300}>
@@ -309,7 +309,7 @@ export const SceneOutro: React.FC = () => {
       <CameraPush amount={0.06}>
         <AbsoluteFill style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
           <Slam from="zoom" delay={0} stiffness={300}>
-            <TvImg(320) />
+{TvImg(320)}
           </Slam>
           <Slam from="left" delay={8} stiffness={280}>
             <div style={{ fontSize: 80, fontFamily: "Georgia,serif", fontWeight: 700, color: "#1a1a1a", letterSpacing: 10 }}>THE</div>
