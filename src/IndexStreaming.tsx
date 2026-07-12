@@ -1,18 +1,17 @@
 import React from "react";
 import { registerRoot, Composition } from "remotion";
 import { VoxStreamingMaster } from "./VoxStreamingMaster";
-import timeline from "./timeline-streaming.json";
+import { SCENE_LENGTHS } from "./scenes-streaming";
 
-const fps = timeline.fps || 30;
-const totalSec = timeline.scenes.reduce((acc, s) => acc + s.durationSec, 0);
-const totalFrames = Math.ceil(totalSec * fps) + Math.ceil(1.6 * fps);
+const sceneIds = ["intro", "netflix-spend", "content-chart", "cord-cutting", "streaming-debt", "market-share", "debt-spiral", "outro"];
+const totalFrames = sceneIds.reduce((acc, id) => acc + (SCENE_LENGTHS[id] ?? 60), 0);
 
 registerRoot(() => (
   <Composition
     id="VoxStreamingMaster"
     component={VoxStreamingMaster}
     durationInFrames={totalFrames}
-    fps={fps}
+    fps={30}
     width={1920}
     height={1080}
     defaultProps={{}}
