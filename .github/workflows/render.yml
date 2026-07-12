@@ -13,6 +13,7 @@ on:
         options:
           - svg
           - editorial
+          - streaming
 
 jobs:
   render:
@@ -77,6 +78,11 @@ jobs:
           npx remotion still src/IndexEditorial.tsx VoxEditorialMaster out-v2/validation-frame.png --frame=450
           node scripts/validate-frame.mjs || echo "Validation warning (non-fatal)"
           npx remotion render src/IndexEditorial.tsx VoxEditorialMaster out/result_v2.mp4 --codec=h264 --jpeg-quality=80 --concurrency=2
+
+      - name: Render (Streaming)
+        if: ${{ env.VERSION == 'streaming' }}
+        run: |
+          npx remotion render src/IndexStreaming.tsx VoxStreamingMaster out/result.mp4 --codec=h264 --jpeg-quality=80 --concurrency=2
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
