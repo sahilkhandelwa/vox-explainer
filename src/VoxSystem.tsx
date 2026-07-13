@@ -100,85 +100,98 @@ export const FocalStructure: React.FC<{
 
 /** Gentle sine-wave float for depth / breathing life into static elements */
 export const Float: React.FC<{
-  amp?: number;      // pixels of float (default 6)
-  period?: number;   // frames for full cycle (default 120)
+  amp?: number;      // pixels of float (default 12)
+  period?: number;   // frames for full cycle (default 90)
   phase?: number;    // offset in frames
   style?: React.CSSProperties;
   children?: React.ReactNode;
-}> = ({ amp = 6, period = 120, phase = 0, style, children }) => {
+}> = ({ amp = 12, period = 90, phase = 0, style, children }) => {
   const f = useCurrentFrame();
   const y = Math.sin(((f + phase) / period) * Math.PI * 2) * amp;
   return <div style={{ transform: `translateY(${y.toFixed(1)}px)`, ...style }}>{children}</div>;
 };
 
-/** Parallax-wrapped scene — background drifts slow, midground normal, foreground fast */
+/** Parallax-wrapped scene — 3 layers move in opposite directions for visible depth */
 export const ParallaxScene: React.FC<{
-  bgDrift?: number;     // background drift amount (default 4)
-  fgDrift?: number;     // foreground drift amount (default 12)
+  bgDrift?: number;     // background drift LEFT px (default -40)
+  fgDrift?: number;     // foreground drift RIGHT px (default 80)
   children?: React.ReactNode;
-}> = ({ bgDrift = 4, fgDrift = 12, children }) => {
+}> = ({ bgDrift = -40, fgDrift = 80, children }) => {
   const f = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const progress = f / Math.max(durationInFrames, 1);
   const bgX = interpolate(progress, [0, 1], [0, bgDrift], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const fgX = interpolate(progress, [0, 1], [0, fgDrift], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bgS = interpolate(progress, [0, 1], [1, 1.06], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const rotate = interpolate(progress, [0, 1], [0, -0.8], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
     <div style={{ position: "absolute", inset: 0 }}>
-      {/* Background layer — paper drifts slowly */}
-      <div style={{ position: "absolute", inset: 0, transform: `translateX(${bgX.toFixed(1)}px)`, zIndex: 0 }}>
-        <VoxBackground opacity={1} />
+      {/* Background layer — paper drifts LEFT + subtle scale + rotation */}
+      <div style={{ position: "absolute", inset: -50, transform: `translateX(${bgX.toFixed(1)}px) scale(${bgS.toFixed(3)}) rotate(${rotate.toFixed(2)}deg)`, zIndex: 0 }}>
+        <div style={{ width: 2020, height: 1180 }}>
+          <VoxBackground opacity={1} />
+        </div>
       </div>
-      {/* Midground layer — main content */}
+      {/* Midground layer — main content (stable) */}
       <div style={{ position: "absolute", inset: 0, zIndex: 1 }}>
         {children}
       </div>
-      {/* Foreground layer — floating accent elements */}
+      {/* Foreground layer — drifts RIGHT faster than background goes LEFT = strong parallax */}
       <div style={{ position: "absolute", inset: 0, zIndex: 2, pointerEvents: "none", transform: `translateX(${fgX.toFixed(1)}px)` }}>
         <ForegroundAccents />
       </div>
       {/* Vignette overlay */}
-      <div style={{ position: "absolute", inset: 0, zIndex: 3, pointerEvents: "none", background: "radial-gradient(circle at 50% 50%, transparent 55%, rgba(60,40,20,0.6) 100%)", opacity: 0.15 }} />
+      <div style={{ position: "absolute", inset: 0, zIndex: 3, pointerEvents: "none", background: "radial-gradient(circle at 50% 50%, transparent 50%, rgba(20,10,5,0.5) 100%)", opacity: 0.2 }} />
     </div>
   );
 };
 
-/** Floating decorative foreground elements — CSS shapes that drift */
+/** Floating decorative foreground elements — big visible shapes drifting & pulsing */
 const ForegroundAccents: React.FC = () => {
   const f = useCurrentFrame();
   const dots = [
-    { x: 80, y: 120, r: 6, period: 100, phase: 0, color: "#E50914" },
-    { x: 1700, y: 200, r: 4, period: 130, phase: 20, color: "#1a1a1a" },
-    { x: 120, y: 800, r: 5, period: 110, phase: 40, color: "#E50914" },
-    { x: 1760, y: 750, r: 3, period: 90, phase: 60, color: "#888" },
-    { x: 960, y: 50, r: 4, period: 140, phase: 10, color: "#1a1a1a" },
-    { x: 960, y: 1000, r: 5, period: 120, phase: 30, color: "#E50914" },
+    { x: 60, y: 80, r: 12, period: 80, phase: 0, color: "#E50914" },
+    { x: 1800, y: 140, r: 10, period: 100, phase: 25, color: "#1a1a1a" },
+    { x: 90, y: 900, r: 14, period: 90, phase: 50, color: "#E50914" },
+    { x: 1860, y: 820, r: 8, period: 110, phase: 10, color: "#888" },
+    { x: 400, y: 50, r: 6, period: 130, phase: 35, color: "#1a1a1a" },
+    { x: 1600, y: 980, r: 11, period: 70, phase: 60, color: "#E50914" },
+    { x: 210, y: 500, r: 5, period: 120, phase: 15, color: "#888" },
+    { x: 1750, y: 400, r: 7, period: 85, phase: 45, color: "#1a1a1a" },
+    { x: 960, y: 80, r: 9, period: 95, phase: 5, color: "#E50914" },
+    { x: 960, y: 1020, r: 13, period: 105, phase: 55, color: "#1a1a1a" },
   ];
   const lines = [
-    { x1: 140, y1: 60, x2: 220, y2: 100, period: 150, phase: 0 },
-    { x1: 1640, y1: 920, x2: 1780, y2: 960, period: 120, phase: 30 },
+    { x1: 130, y1: 40, x2: 260, y2: 90, period: 130, phase: 0 },
+    { x1: 1660, y1: 950, x2: 1840, y2: 1000, period: 110, phase: 30 },
+    { x1: 50, y1: 550, x2: 180, y2: 530, period: 140, phase: 15 },
+    { x1: 1740, y1: 300, x2: 1900, y2: 330, period: 100, phase: 45 },
   ];
   return (
     <>
       {dots.map((d, i) => {
-        const floatY = Math.sin(((f + d.phase) / d.period) * Math.PI * 2) * 8;
+        const floatY = Math.sin(((f + d.phase) / d.period) * Math.PI * 2) * 14;
+        const pulse = 0.4 + Math.sin(((f + d.phase) / d.period) * Math.PI * 2) * 0.3;
         return (
           <div
             key={"d" + i}
             style={{
               position: "absolute",
-              left: d.x,
-              top: d.y + floatY,
+              left: d.x - d.r,
+              top: d.y + floatY - d.r,
               width: d.r * 2,
               height: d.r * 2,
               borderRadius: "50%",
               background: d.color,
-              opacity: 0.2 + Math.sin(((f + d.phase) / d.period) * Math.PI * 2) * 0.1,
+              opacity: pulse,
+              boxShadow: d.color === "#E50914" ? "0 0 12px rgba(229,9,20,0.4)" : undefined,
             }}
           />
         );
       })}
       {lines.map((l, i) => {
-        const dx = Math.sin(((f + l.phase) / l.period) * Math.PI * 2) * 4;
+        const dx = Math.sin(((f + l.phase) / l.period) * Math.PI * 2) * 8;
+        const pulse = 0.06 + Math.sin(((f + l.phase) / l.period) * Math.PI * 2) * 0.04;
         const len = Math.hypot(l.x2 - l.x1, l.y2 - l.y1);
         const angle = Math.atan2(l.y2 - l.y1, l.x2 - l.x1);
         return (
@@ -190,8 +203,8 @@ const ForegroundAccents: React.FC = () => {
               top: l.y1 + dx,
               width: len,
               height: 2,
-              background: "#1a1a1a",
-              opacity: 0.06,
+              background: "#E50914",
+              opacity: pulse,
               transform: `rotate(${angle}rad)`,
               transformOrigin: "0 50%",
             }}
