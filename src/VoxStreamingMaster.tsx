@@ -1,34 +1,31 @@
 import React from "react";
-import { useVideoConfig, Sequence, AbsoluteFill } from "remotion";
-import { STREAMING_SCENES, SCENE_LENGTHS } from "./scenes-streaming";
+import { useVideoConfig, Sequence } from "remotion";
+import { VoxBackground } from "./VoxSystem";
+import { STREAMING_SCENES } from "./scenes-streaming";
 import timeline from "./timeline-streaming.json";
 
 type T = { fps: number; scenes: Array<{ id: string; startSec: number; endSec: number; durationSec: number }> };
 const tl = timeline as T;
-
-// Build absolute frame offsets
 let acc = 0;
-const sceneFrames: Array<{ id: string; start: number; dur: number }> = [];
-for (const s of tl.scenes) {
-  const dur = SCENE_LENGTHS[s.id] ?? Math.ceil(s.durationSec * tl.fps);
-  sceneFrames.push({ id: s.id, start: acc, dur });
-  acc += dur;
-}
-const TOTAL_FRAMES = acc;
+for (const s of tl.scenes) { s.startSec = acc; acc += s.durationSec; s.endSec = acc; }
 
 export const VoxStreamingMaster: React.FC = () => {
   const { fps } = useVideoConfig();
   return (
-    <AbsoluteFill style={{ width: 1920, height: 1080, overflow: "hidden", background: "#0d0d0d" }}>
-      {sceneFrames.map((sf) => {
-        const Comp = STREAMING_SCENES[sf.id];
+    <div style={{ position: "absolute", inset: 0, width: 1920, height: 1080, overflow: "hidden", background: "#efe6d2" }}>
+      <VoxBackground opacity={1} />
+      {tl.scenes.map((s) => {
+        const Comp = STREAMING_SCENES[s.id];
+        const from = Math.round(s.startSec * fps);
+        const dur = Math.ceil(s.durationSec * fps);
         if (!Comp) return null;
         return (
-          <Sequence key={sf.id} from={sf.start} durationInFrames={sf.dur} name={sf.id} layout="absolute-fill">
+          <Sequence key={s.id} from={from} durationInFrames={dur} name={s.id} layout="absolute-fill">
             <Comp />
           </Sequence>
         );
       })}
-    </AbsoluteFill>
+      <div style={{ position: "absolute", inset: 0, opacity: 0.18, pointerEvents: "none", background: "radial-gradient(circle at 50% 50%, transparent 55%, rgba(60,40,20,0.6) 100%)" }} />
+    </div>
   );
 };

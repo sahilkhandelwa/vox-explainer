@@ -1,13 +1,13 @@
 {
   "fps": 30,
   "scenes": [
-    { "id": "intro", "durationSec": 2.0 },
-    { "id": "netflix-spend", "durationSec": 1.8 },
-    { "id": "content-chart", "durationSec": 2.0 },
-    { "id": "cord-cutting", "durationSec": 1.8 },
-    { "id": "streaming-debt", "durationSec": 1.5 },
-    { "id": "market-share", "durationSec": 1.5 },
-    { "id": "debt-spiral", "durationSec": 1.5 },
-    { "id": "outro", "durationSec": 1.5 }
+    { "id": "intro", "durationSec": 6.0 },
+    { "id": "netflix-spend", "durationSec": 5.0 },
+    { "id": "content-chart", "durationSec": 5.5 },
+    { "id": "cord-cutting", "durationSec": 5.0 },
+    { "id": "streaming-debt", "durationSec": 5.0 },
+    { "id": "market-share", "durationSec": 5.5 },
+    { "id": "debt-spiral", "durationSec": 4.0 },
+    { "id": "outro", "durationSec": 5.0 }
   ]
 }
