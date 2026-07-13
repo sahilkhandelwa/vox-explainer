@@ -71,8 +71,8 @@ export const SceneIntro: React.FC = () => (
     <AbsoluteFill style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
       <Rise delay={2}>
         <Float amp={4} period={100}>
-          <TvImg(340) />
-        </Float>
+{TvImg(340)}
+          </Float>
       </Rise>
       <Rise delay={10}>
         <WordReveal text="THE STREAMING WARS" delay={0} charDelay={6}
@@ -158,7 +158,7 @@ export const SceneCordCut: React.FC = () => {
         <div style={{ display: "flex", gap: 60, alignItems: "center", marginTop: 20 }}>
           <Rise delay={8}>
             <Float amp={3} period={90} phase={0}>
-              <TvImg(280) />
+  {TvImg(280)}
             </Float>
           </Rise>
           <Rise delay={14}>
@@ -169,7 +169,7 @@ export const SceneCordCut: React.FC = () => {
           <Rise delay={20}>
             <Float amp={3} period={100} phase={30}>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <SofaImg(250) />
+{SofaImg(250)}
                 <div style={{ fontSize: 28, fontFamily: "Georgia,serif", color: "#888", marginTop: 8 }}>Streaming</div>
               </div>
             </Float>
@@ -285,7 +285,7 @@ export const SceneOutro: React.FC = () => {
       <AbsoluteFill style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", opacity: fade }}>
         <Rise delay={4}>
           <Float amp={4} period={100}>
-            <TvImg(320) />
+  {TvImg(320)}
           </Float>
         </Rise>
         <Rise delay={14}>
